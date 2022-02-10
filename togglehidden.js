@@ -5,6 +5,7 @@ var page = 0;
 AFRAME.registerComponent("togglehidden", {
   //Initialize function
   init: function () {
+    
     //get scene element
     var sceneEl = document.querySelector("a-scene");
 
@@ -19,11 +20,13 @@ AFRAME.registerComponent("togglehidden", {
 
     //get toggle button
     var tb = sceneEl.querySelector("#toggleButton");
-
-
+    //get lable
+    var label = sceneEl.querySelector("#earthLabel");
+     
     //Give component a function
     this.toggleHide = function () {
       if (page == 0) {
+       
         //change text and font size 
         for (var i = 0; i < els.length; i++) {
           els[i].setAttribute(
@@ -39,17 +42,22 @@ AFRAME.registerComponent("togglehidden", {
           };
           els[i].setAttribute("animation", params);
         }
-        //change the image and text size
-          img.setAttribute("src", "https://cdn.glitch.global/5abe6510-0954-4132-8e0c-d35824eaf575/thumbnails%2Fhit.PNG?1641630335058");
+        //change the image to psyche 
+          img.setAttribute("src", "psycheformation_hit.png");
         
         page = 1;
+        //change button text
         tb.setAttribute("value", "Back: Why is Psyche important?");
-      } else {
+        //Change image label
+        label.setAttribute("value","Psyche ->");
+        label.setAttribute("color","black");
+
+      } else  if (page==1){
         //change the text and text size
         for (var i = 0; i < els.length; i++) {
           els[i].setAttribute(
             "value",
-            "Deep within the terrestrial planets, including Earth, scientists infer the presence of metallic cores, but these lie unreachably far below the planets’ rocky mantles and crusts. The asteroid Psyche offers a unique window into these building blocks of planet formation and the opportunity to investigate a previously unexplored type of world."
+            "Deep within the terrestrial planets, including Earth, scientists infer the presence ofmetallic cores, but these lie unreachably far below the planets’ rocky mantles and crusts. The asteroid Psyche offers a unique window into these building blocks of planet formation and the opportunity to investigate a previously unexplored type of world."
           );
           let currOpacity = els[i].getAttribute("letter-spacing");
 
@@ -61,20 +69,32 @@ AFRAME.registerComponent("togglehidden", {
           els[i].setAttribute("animation", params);
         }
         //change the image back to earth
-        img.setAttribute("src","https://cdn.glitch.me/5abe6510-0954-4132-8e0c-d35824eaf575/earth-core.PNG?v=1641272839386");
+        img.setAttribute("src","earth-core.png");
 
         page = 0;
+        //change button text 
         tb.setAttribute("value", "G0 T0: How might have Pysche formed?");
+        //change image label
+        label.setAttribute("value","Earth ->");
+        label.setAttribute("color","white");
 
-        
       }
     };
 
     //Add EventListener
-    this.el.addEventListener("click", this.toggleHide);
+
+        this.el.addEventListener("click", this.toggleHide);
+
+    
   },
   //On Remove
-  remove: function () {
-    this.el.removeEventListener("click", this.toggleHide);
+  
+    remove: function () {
+
+        this.el.pauseEventListener("click", this.toggleHide,false)
+      
+    ;
+    
+  
   },
 });
