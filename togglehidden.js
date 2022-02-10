@@ -57,7 +57,7 @@ AFRAME.registerComponent("togglehidden", {
         for (var i = 0; i < els.length; i++) {
           els[i].setAttribute(
             "value",
-            "Deep within the terrestrial planets, including Earth, scientists infer the presence ofmetallic cores, but these lie unreachably far below the planets’ rocky mantles and crusts. The asteroid Psyche offers a unique window into these building blocks of planet formation and the opportunity to investigate a previously unexplored type of world."
+            "Deep within the terrestrial planets, including Earth, scientists infer the presence of metallic cores, but these lie unreachably far below the planets’ rocky mantles and crusts. The asteroid Psyche offers a unique window into these building blocks of planet formation and the opportunity to investigate a previously unexplored type of world."
           );
           let currOpacity = els[i].getAttribute("letter-spacing");
 
